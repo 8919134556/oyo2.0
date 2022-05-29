@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>booking</title>
+    <!--alert-->
+	<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+	<!--alert css-->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+	<!-- Default theme -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+
+    
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'assets/css/booking.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"></link>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></link>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></link>
+    
+</head>
+
+<body class="g-sidenav-show  bg-gray-200">
+    <div id="booking" class="section">
+        <div class="section-center">
+            <div class="container">
+                <div class="row">
+                    <div class="booking-form">
+                        <div class="form-header">
+                            <h1>Make your Trip</h1>
+                        </div>
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group"> 
+                                <input class="form-control" type="text" placeholder="Country, ZIP, city..." name="addres"> <span class="form-label">Destination</span> </div>
+                            <div class="row">
+                                <div class="col-md-6 ">
+                                    <div class="form-group"> <input class="form-control align-items-center" type="date" required name="check_in"> <span class="form-label">Check In</span> </div>
+                                </div>
+                                <div class="col-md-6 ">
+                                    <div class="form-group"> <input class="form-control" type="date" required name="check_out"> <span class="form-label" >Check out</span> </div>
+                                </div>
+                                <div class="col-md-12 ">
+                                    <div class="form-group"> <input class="form-control" type="text" placeholder="Passport Number" required name="passport"> <span class="form-label" >Passport Num</span> </div>
+                                </div>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group"> <select class="form-control" required name="select_class">
+                                            <option value="selected hidden">Select Class</option>
+                                            <option>ordinary</option>
+                                            <option>econamy</option>
+                                            <option>business</option>
+                                        </select> <span class="select-arrow"></span> <span class="form-label">Select Class</span> </div>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <div class="form-group"> <select class="form-control" required name="no_adults">
+                                            <option value="selected hidden">no of adults</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                        </select> <span class="select-arrow"></span> <span class="form-label">Adults</span> </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group"> <select class="form-control" required name="no_children">
+                                            <option value="selected hidden">no of children</option>
+                                            <option>0</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                        </select> <span class="select-arrow"></span> <span class="form-label">Children</span> </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group"> <input class="form-control" type="email" placeholder="Enter your Email" name="email"> <span class="form-label">Email</span> </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group"> <input class="form-control" type="tel" placeholder="Enter you Phone" name="phone"> <span class="form-label">Phone</span> </div>
+                                </div>
+                            </div>
+                            <div class="form-btn"> <button class="submit-btn">Book Now</button> </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script> 
+		{% for flashmsg in messages %} 
+			alertify.set('notifier','position', 'top-center');
+			alertify.success('{{flashmsg}}');
+		
+		{% endfor %}
+	</script>
+</body>
+
+</html>

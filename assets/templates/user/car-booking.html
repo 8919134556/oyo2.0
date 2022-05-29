@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>booking</title>
+    <!--alert-->
+	<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+	<!--alert css-->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+	<!-- Default theme -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+
+    
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'assets/css/booking.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"></link>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></link>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></link>
+    
+</head>
+
+<body class="g-sidenav-show  bg-gray-200">
+    <div id="booking" class="section">
+        <div class="section-center">
+            <div class="container">
+                <div class="row">
+                    <div class="booking-form">
+                        <div class="form-header">
+                            <h1>Make your Trip</h1>
+                        </div>
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group"> 
+                                <input class="form-control" type="text" placeholder="Where you from" required name="car_from"> <span class="form-label">Where you from</span> </div>
+                                <div class="form-group"> 
+                                    <input class="form-control" type="text" placeholder="Where you go" required name="to"> <span class="form-label">Where you go</span> </div>
+                            <div class="row">
+                                <div class="col-md-6 ">
+                                    <div class="form-group"> <input class="form-control align-items-center" type="date" required name="journey_date"> <span class="form-label">Journey Date</span> </div>
+                                </div>
+                                <div class="col-md-6 ">
+                                    <div class="form-group"> <input class="form-control" type="date" required name="return_date"> <span class="form-label" >Return Date</span> </div>
+                                </div>
+                                <div class="col-md-6 ">
+                                    <div class="form-group"> <input class="form-control" type="text" placeholder="Pick Up" required name="pick_up"> <span class="form-label" >Your pickup address</span> </div>
+                                </div>
+                                <div class="col-md-6 ">
+                                    <div class="form-group"> <input class="form-control" type="text" required name="drop_off" placeholder="Drop Off"> <span class="form-label" >Your drop-off address</span> </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group"> <input class="form-control" type="email" placeholder="Enter your Email" name="email"> <span class="form-label">Email</span> </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group"> <input class="form-control" type="tel" placeholder="Enter you Phone" name="phone"> <span class="form-label">Phone</span> </div>
+                                </div>
+                            </div>
+                            <div class="form-btn"> <button class="submit-btn">Book Now</button> </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script> 
+		{% for flashmsg in messages %} 
+			alertify.set('notifier','position', 'top-center');
+			alertify.success('{{flashmsg}}');
+		
+		{% endfor %}
+	</script>
+</body>
+
+</html>
